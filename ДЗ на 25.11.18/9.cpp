@@ -1,13 +1,12 @@
-/*Write a program that finds all Chen Prime numbers not exceeding n.
+/*Write a program that finds all primes of Sophie Germain not exceeding n.
  The program should work in no more than O(n*log log n) steps.*/
+ #include <iostream>
 
-#include <iostream>
-
-using namespace std;
+ using namespace std;
 /*
-int main()
-{
+ int main() {
  int n; cin >> n;
+
  bool* used = new bool [n + 1];
  used [0] = used [1] = 0;
  for (int i = 2; i <= n; i++){
@@ -20,16 +19,13 @@ int main()
         }
     }
  }
- for(int i = 0; i < n; i++){
+ for (int i = 2; i <= n; i++){
     if(used[i]){
-        if(used[i + 2]){
-          cout << i;
-        }
-        if(){
-
+        if(used[(2 * i) + 1]){
+            cout << i << " ";
         }
     }
  }
  delete [] used;
- return 0 ;
-}*/
+ return 0;
+ }*/

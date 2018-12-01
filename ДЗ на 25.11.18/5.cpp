@@ -1,8 +1,8 @@
-/*Напишите эффективную процедуру, выписывающую из массива длины n все элементы,
-у которых произведение ненулевых цифр больше k. В комментариях напишите, почему перебор - эффективный*/
+/*Write an effective procedure that writes out all elements from an array of length n,
+whose product of nonzero digits is greater than k. In the comments, write why brute force is effective*/
 #include <iostream>
 
-using namespace std;
+using namespace std;/*
 int prod(int n){
  int umn = 1;
  int i = 10;
@@ -25,6 +25,7 @@ int prod(int n){
     }
 
    }
+
   return umn;
 }
 
@@ -39,9 +40,10 @@ void vyp(int* &a, int n, int gran){
  }
 n = schet;
 a = nov;
+delete [] nov
 }
 
-/*int main (){
+int main (){
   int n;
   int k;
   cin >> n;

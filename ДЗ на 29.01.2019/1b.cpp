@@ -25,10 +25,10 @@ private :
 
 public :
 
- double_vector(unsigned int N, const double_vector &A){            //1)конструктор по double-массиву
+ double_vector(int N, const &A){            //1)конструктор по double-массиву
   cap = N;                                                         //и его размеру
-  for(unsigned int i = 0; i < N; i++){
-    Data[i] = A[i] ;
+  for(int i = 0; i < N; i++){
+    Data[i] = A.Data[i] ;
     sz++;
   };
   cout << "The constructor is working" << endl;
@@ -113,7 +113,7 @@ public :
   return y;
  };
 
- /*
+
  void push__back(double x){
   if(sz >= cap){
     cap *= 2;
@@ -128,8 +128,7 @@ public :
   sz++;
   cout << "Method push_back is working." << endl;
 };
-*/
-/*
+
  double pop__back(){         //pop_back
 
   double* temp = new double [sz - 1];
@@ -147,7 +146,7 @@ public :
 
   cout << "Method pop_back is working." << endl;
   return x;
-};*/
+};
 
  unsigned int size_(){       //size()
  cout << "Size" << endl;
@@ -160,7 +159,7 @@ public :
  };
 
  void resize_(int y){                 //2)resize
-   if((cap - sz) + y) >= 0){
+   if(((cap - sz) + y) >= 0){
 
     double* temp = new double [cap + y];
 
@@ -171,40 +170,96 @@ public :
     for(int i = sz; i < (sz + y); i++){
         temp[i] = 0;
         };
+
+    delete [] Data;
     Data = temp;
     delete [] temp;
     };
   return;
   };
 
- void insert_(unsigned int a; double y){
+ void insert_(int a, double y){           //5)insert
 
-  double* temp  = new double[a];
- }
+  double* temp  = new double[cap + 1];
+  sz++;
 
+  for(int i = (a - 1); i < (cap + 1); i++){
+    temp[i + 1] = Data[i];
+    };
+  temp[a] = y;
+
+  delete [] Data;
+  Data = temp;
+  delete [] temp;
+ };
+
+ void erase_(int pos){                   //6)erase(pos)
+
+  double* temp = new double [cap - 1];
+
+  for(int i = 0; i < pos;i++){
+    temp[i] = Data[i];
+  };
+  for(int i = (pos + 1); i < (cap - 1); i++){
+    temp[i - 1] = Data[i];
+  };
+
+  delete [] Data;
+  Data = temp;
+  delete [] temp;
+ };
+
+ void erase_(int a, int b){
+  if(a < b){
+   int res = cap - ((b - a) + 1);
+   double* temp = new double [res];
+
+   for(int i = 0; i < a; i++) temp[i] = Data[i];
+   for(int i = a; i < res; i++) temp[i] = Data[i + res];
+
+   delete [] Data;
+   Data = temp;
+   delete [] temp;
+  };
+
+  if(b < a){
+   int res = cap - ((a - b) + 1);
+   double* temp = new double [res];
+
+   for(int i = 0; i < b; i++) temp[i] = Data[i];
+   for(int i = b; i < res; i++) temp[i] = Data[i + res];
+
+   delete [] Data;
+   Data = temp;
+   delete [] temp;
+  };
+ };
 };
+
 
 int main(){
 
-unsigned int N; cin >> N;
+int N; cin >> N;
 
-double_vector V();
+double* arr = new double [N];
+for(int i = 0; i < N; i++){
+    cin >> arr[i] ;
+    };
+double_vector W(N, &arr);
 
-double a;
+cout << "The last element of vector is " << W.pop__back() << endl;
+cout << "The first element of vector is " << W.pop__front() << endl;
 
-for(unsigned int i = 0; i < N; i++){
-    cin >> a;
-    V.push__back(a);
-};
-
-cout << "The last element of vector is " << V.pop__back();
-
-unsigned int B = V.sz_();
-unsigned int W = V.cap_();
-
-cout << "Capacity = " << W << endl;
-cout << "Size = " << B << endl;
-
+int b; cin >> b;
+W.push__front(b); for(int i = 0; i < W.cap; i++) cout << W[i] << " ";
+int a; cin >> a;
+W.push__back(a); for(int i = 0; i < W.cap; i++) cout << W[i] << " ";
+int c; cin >> c;
+W.erase_(c) for(int i = 0; i < W.cap; i++) cout << W[i] << " ";
+int d; double e; cin >> d >> e;
+W.erase_(d, e) for(int i = 0; i < W.cap; i++) cout << W[i] << " ";
+int g, c; cin >> g >> c;
+W.insert_(f, g) for(int i = 0; i < W.cap; i++) cout << W[i] << " ";
 return 0;
 };
-*/
+

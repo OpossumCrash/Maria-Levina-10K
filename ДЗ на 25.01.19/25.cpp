@@ -27,7 +27,7 @@ int main() {
 
  for(int i = 0; i <= (N - (4 + 1)); i++){
 
-    for(int j = 4; j <= (4 - i); j++){
+    for(int j = 4; j <= (N - 1); j++){
         int temp = mas[i + j] * mas[i];
 
         if((temp % 38) == 0){
